@@ -1,0 +1,19 @@
+<mat-card class="summary-dialog">
+  <button
+    class="summary-btn-close"
+    mat-stroked-button
+    aria-label="Close the summary"
+    mat-dialog-close
+    color="primary"
+    style="color: black"
+  >
+    X
+  </button>
+  <mat-card-title>
+    <h3 class="summary-dialog-title" style="color: black">{{ data.Title }}</h3>
+  </mat-card-title>
+  <br />
+  <mat-dialog-content class="summary-dialog-content" style="color: black">
+    <b>Description: </b> {{ data.Description }}
+  </mat-dialog-content>
+</mat-card>
