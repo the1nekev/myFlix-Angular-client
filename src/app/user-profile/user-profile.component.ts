@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -36,19 +35,21 @@ export class UserProfileComponent implements OnInit {
  * Gets the users info to display or change
  * */
 
-  getUser(): void {
-    this.fetchApiData.getOneUser().subscribe((response: any) => {
-      this.user = response;
-      this.userData.Username = this.user.Username;
-      this.userData.Password = this.user.Password;
-      this.userData.Email = this.user.Email;
-      this.userData.Birthday = formatDate(this.user.Birthday, 'yyyy-mm-dd', 'en-US', 'UTC+0');
+getUser(): void {
+  this.fetchApiData.getOneUser().subscribe((response: any) => {
+    console.log(response);
+    this.user = response;
+    this.userData.Username = this.user.Username;
+    this.userData.Email = this.user.Email;
+    this.userData.Birthday = formatDate(this.user.Birthday, 'yyyy-MM-dd', 'en-US', 'UTC+0');
 
-      this.fetchApiData.getAllMovies().subscribe((response: any) => {
-        this.favoriteMovies = response.filter((m: {_id: any}) => this.user.FavoriteMovies.indexOf(m._id) >= 0);
-      })
+
+    this.fetchApiData.getAllMovies().subscribe((response: any) => {
+      this.favoriteMovies = response.filter((m: { _id: any }) => this.user.FavoriteMovies.indexOf(m._id) >= 0)
     })
-  } 
+  })
+}
+
 
   /** 
  * Logic for updating user info
@@ -68,6 +69,9 @@ export class UserProfileComponent implements OnInit {
       })
     });
   }
+   /** 
+ * Logic for deleting user
+ * */
 
   deleteUser(): void {
     if (confirm('are you sure?')) {

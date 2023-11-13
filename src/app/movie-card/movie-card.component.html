@@ -1,6 +1,6 @@
 <app-nav-bar></app-nav-bar>
-<div style="display: flex">
-  <mat-card *ngFor="let movie of movies" style="flex: 1 1 auto">
+<div class="movie-view">
+  <mat-card *ngFor="let movie of movies" class="movie-card">
     <mat-card-header>
       <mat-card-title>{{ movie.Title }}</mat-card-title>
       <mat-card-subtitle
@@ -16,6 +16,7 @@
     <mat-card-actions>
       <button
         mat-button
+        class="mat-icon-button"
         (click)="openGenre(movie.Genre.Name, movie.Genre.Description)"
         color="primary"
       >

@@ -36,21 +36,21 @@ export class MovieCardComponent {
   /** 
    * Get user info and set favorites
    * */
- getFavorites(): void {
-  this.fetchApiData.getOneUser().subscribe(
-    (resp: any) => {
-      if (resp.user && resp.user.FavoriteMovies) {
-        this.favorites = resp.user.FavoriteMovies;
-      } else {
-        this.favorites = []; // Set an empty array if data is not available
+  getFavorites(): void {
+    this.fetchApiData.getOneUser().subscribe(
+      (resp: any) => {
+        if (resp.user && resp.user.FavoriteMovies) {
+          this.favorites = resp.user.FavoriteMovies;
+        } else {
+          this.favorites = []; // Set an empty array if data is not available
+        }
+      },
+      (error: any) => {
+        console.error('Error fetching user data:', error);
+        this.favorites = []; // Set an empty array on error as well
       }
-    },
-    (error: any) => {
-      console.error('Error fetching user data:', error);
-      this.favorites = []; // Set an empty array on error as well
-    }
-  );
-}
+    );
+  }
 
    /**
     * Check if a movie is a user's favorite already
@@ -100,6 +100,7 @@ removeFromFavorites(id: string): void {
 }
 
   /** 
+   * This function allows one to access the genre-dialog
    *  Open genre information from GenreComponent 
    * @param genre name
    * @paramgenre description
